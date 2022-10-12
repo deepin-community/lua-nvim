@@ -1,0 +1,44 @@
+Source: lua-nvim
+Priority: optional
+Maintainer: Jason Pleau <jason@jpleau.ca>
+Uploaders: James McCoy <jamessan@debian.org>
+Build-Depends: debhelper-compat (= 12),
+            dh-lua,
+            libuv1-dev,
+            libkvm-dev [kfreebsd-any],
+            lua-busted,
+# Minimum version for lua5.3 support
+            lua-coxpcall (>> 1.17.0-1~),
+            lua-luv,
+            lua-mpack,
+            neovim
+Standards-Version: 4.5.0
+Section: interpreters
+Rules-Requires-Root: no
+Homepage: https://github.com/neovim/lua-client/
+Vcs-Git: https://salsa.debian.org/lua-team/lua-nvim.git
+Vcs-Browser: https://salsa.debian.org/lua-team/lua-nvim
+
+Package: lua-nvim
+Architecture: any
+Depends: ${shlibs:Depends},
+         ${misc:Depends},
+         lua-coxpcall,
+         lua-mpack,
+         lua-luv
+Provides: ${lua:Provides}
+XB-Lua-Versions: ${lua:Versions}
+Description: Lua client for Neovim
+ lua-nvim provices a mean to communicate with neovim sessions
+ through Lua.
+
+Package: lua-nvim-dev
+Section: libdevel
+Architecture: any
+Depends: lua-nvim (= ${binary:Version}),
+         ${misc:Depends},
+         libkvm-dev [kfreebsd-any]
+Provides: ${lua:Provides}
+XB-Lua-Versions: ${lua:Versions}
+Description: Lua client for Neovim
+ This package provide the static library for lua-nvim

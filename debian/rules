@@ -1,0 +1,12 @@
+#!/usr/bin/make -f
+
+export DEB_BUILD_MAINT_OPTIONS=hardening=+all
+export DH_LUA_OPTS="skip-test-app-dynamic skip-test-app-static"
+
+%:
+	dh $@ --buildsystem=lua --with lua
+
+override_dh_auto_clean:
+	dh_auto_clean
+	rm -rf debian/.local
+	rm -f debian/.nvimlog
