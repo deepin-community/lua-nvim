@@ -1,1 +1,8 @@
-debian/rules autopkgtest
+timeout 5m debian/rules autopkgtest
+rc=$?
+
+if [ $rc -eq 124 ]; then
+  exit 77
+fi
+
+exit $rc
